@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LegendMax — Comunidade de Fã-Dublagem</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23080a0d'/%3E%3Crect width='32' height='32' rx='6' fill='none' stroke='%23cc1111' stroke-width='2'/%3E%3Ctext x='4' y='23' font-family='Arial Black,sans-serif' font-weight='900' font-size='16' fill='%23ffffff'%3EL%3C/text%3E%3Ctext x='16' y='23' font-family='Arial Black,sans-serif' font-weight='900' font-size='16' fill='%23cc1111'%3EM%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
@@ -48,6 +49,389 @@
       position: absolute;
       inset: 0;
       background-image:
+        linear-gradient(rgba(204,17,17,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(204,17,17,0.07) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 200px;
+      background: linear-gradient(transparent, var(--bg));
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(64px, 12vw, 140px);
+      line-height: 0.9;
+      letter-spacing: 2px;
+      position: relative;
+    }
+
+    .hero h1 .outline {
+      -webkit-text-stroke: 2px var(--red);
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-size: clamp(14px, 2vw, 17px);
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.7;
+      margin: 28px auto 0;
+      position: relative;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 40px;
+      position: relative;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      background: var(--red);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      border-radius: 6px;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      box-shadow: 0 0 0 0 rgba(204,17,17,0);
+    }
+    .btn-primary:hover {
+      background: var(--red-glow);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(204,17,17,0.4);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      background: transparent;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      transition: border-color .2s, color .2s;
+    }
+    .btn-secondary:hover { border-color: var(--red); color: var(--red); }
+
+    /* ── SEÇÕES ── */
+    section { padding: 90px 24px; }
+    .container { max-width: 1000px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 6vw, 58px);
+      line-height: 1;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    /* ── VÍDEO ── */
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 10px;
+      margin-top: 40px;
+      border: 1px solid var(--border);
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+    }
+
+    /* ── EQUIPE ── */
+    #equipe { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 16px;
+      margin-top: 44px;
+    }
+
+    .member-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px 20px;
+      text-align: center;
+      transition: border-color .2s, transform .2s;
+    }
+    .member-card:hover {
+      border-color: var(--red);
+      transform: translateY(-4px);
+    }
+
+    .member-icon { font-size: 36px; margin-bottom: 12px; }
+    .member-name { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+    .member-role { font-size: 12px; color: var(--muted); }
+
+    /* ── O QUE FAZEMOS ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 44px;
+    }
+
+    .feature-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px 24px;
+      transition: border-color .2s;
+    }
+    .feature-card:hover { border-color: rgba(204,17,17,0.4); }
+    .feature-icon { font-size: 28px; margin-bottom: 14px; }
+    .feature-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; }
+    .feature-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* ── CTA FINAL ── */
+    #entrar {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .cta-box {
+      background: var(--red-dim);
+      border: 1px solid rgba(204,17,17,0.25);
+      border-radius: 16px;
+      padding: 60px 40px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta-box .section-title { margin-bottom: 14px; }
+    .cta-box .section-desc { margin: 0 auto 32px; }
+
+    .wpp-icon {
+      width: 22px;
+      height: 22px;
+      fill: #fff;
+      flex-shrink: 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    footer span { color: var(--red); }
+
+    /* ── RESPONSIVO ── */
+    @media (max-width: 600px) {
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+      .hero-actions { flex-direction: column; align-items: stretch; padding: 0 16px; }
+      .cta-box { padding: 40px 24px; }
+    }
+
+    /* ── ANIMAÇÃO DE ENTRADA ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero > * {
+      animation: fadeUp .7s ease both;
+    }
+    .hero-eyebrow { animation-delay: .1s; }
+    .hero h1      { animation-delay: .2s; }
+    .hero-sub     { animation-delay: .35s; }
+    .hero-actions { animation-delay: .5s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <p class="hero-eyebrow">Comunidade Oficial de Fã-Dublagem</p>
+    <h1>LEGEND<br><span class="outline">MAX</span></h1>
+    <p class="hero-sub">
+      Somos dubladores, músicos, editores e roteiristas que fazem acontecer por paixão. Se você tem talento e quer criar, esse é o seu lugar.
+    </p>
+    <div class="hero-actions">
+      <a href="https://chat.whatsapp.com/C6BNv9GMHuqG1ei2rRoKni?s=sw&p=a&mlu=3" target="_blank" rel="noopener" class="btn-primary">
+        <svg class="wpp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.86L.057 23.857a.5.5 0 0 0 .608.61l6.102-1.597A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.012-1.375l-.36-.214-3.724.976.993-3.63-.235-.374A9.818 9.818 0 1 1 12 21.818z"/>
+        </svg>
+        Entrar no Grupo
+      </a>
+      <a href="#projeto" class="btn-secondary">Ver o Projeto ↓</a>
+    </div>
+  </section>
+
+  <!-- ── PROJETO ── -->
+  <section id="projeto">
+    <div class="container">
+      <p class="section-label">Primeiro Projeto</p>
+      <h2 class="section-title">Bloody Mary<br>— A Lenda Voltou</h2>
+      <p class="section-desc">
+        Nossa primeira produção completa. Fã-dublagem, trilha original, edição cinematográfica — tudo feito pela equipe. Assiste e entende o nível que a gente quer chegar.
+      </p>
+      <div class="video-wrapper">
+        <iframe
+          src="https://www.youtube.com/embed/_u0PrBmYcJM"
+          title="Bloody Mary — A Lenda Voltou | LegendMax"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── O QUE FAZEMOS ── -->
+  <section id="sobre">
+    <div class="container">
+      <p class="section-label">O que somos</p>
+      <h2 class="section-title">Criamos juntos.<br>Do roteiro ao vídeo.</h2>
+      <p class="section-desc">A LegendMax não é um grupo de entretenimento passivo. Aqui cada membro é parte da produção.</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎙️</div>
+          <div class="feature-title">Fã-Dublagem</div>
+          <div class="feature-desc">Vozes originais adaptadas para o português com direção de arte e gravação coordenada.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎵</div>
+          <div class="feature-title">Covers & Música</div>
+          <div class="feature-desc">Trilhas originais e covers que completam a atmosfera de cada produção.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎬</div>
+          <div class="feature-title">Edição de Vídeo</div>
+          <div class="feature-desc">Montagem, efeitos e sincronização. Os editores são o coração técnico da equipe.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✍️</div>
+          <div class="feature-title">Roteiro & Adaptação</div>
+          <div class="feature-desc">Roteiristas que traduzem e adaptam os diálogos para soar natural e impactante.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EQUIPE ── -->
+  <section id="equipe">
+    <div class="container">
+      <p class="section-label">Quem faz acontecer</p>
+      <h2 class="section-title">A Equipe</h2>
+      <p class="section-desc">Os fundadores e criadores por trás de Bloody Mary — A Lenda Voltou.</p>
+
+      <div class="team-grid">
+        <div class="member-card">
+          <div class="member-icon">👑</div>
+          <div class="member-name">Max</div>
+          <div class="member-role" style="color: var(--red-glow);">Direção Geral & Voz</div>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">🎙️</div>
+          <div class="member-name">Yasmin</div>
+          <div class="member-role" style="color: #58a6ff;">Fã-Dubladora Principal</div>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">🎬</div>
+          <div class="member-name">Gabriel</div>
+          <div class="member-role" style="color: #2ea043;">Edição de Vídeo & FX</div>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">✍️</div>
+          <div class="member-name">Lívia</div>
+          <div class="member-role" style="color: orange;">Roteirista & Adaptadora</div>
+        </div>
+        <div class="member-card">
+          <div class="member-icon">🎵</div>
+          <div class="member-name">Mestre Cover</div>
+          <div class="member-role" style="color: cyan;">Trilha Sonora & Músico</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA FINAL ── -->
+  <section id="entrar">
+    <div class="container">
+      <div class="cta-box">
+        <p class="section-label" style="text-align:center;">Próximo passo</p>
+        <h2 class="section-title">Você tem<br>o que a gente precisa?</h2>
+        <p class="section-desc">
+          Dublador, músico, editor, roteirista ou animador — se você quer criar algo real, entra no grupo e se apresenta.
+        </p>
+        <a href="https://chat.whatsapp.com/C6BNv9GMHuqG1ei2rRoKni?s=sw&p=a&mlu=3" target="_blank" rel="noopener" class="btn-primary" style="font-size:16px; padding:18px 40px;">
+          <svg class="wpp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.86L.057 23.857a.5.5 0 0 0 .608.61l6.102-1.597A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.012-1.375l-.36-.214-3.724.976.993-3.63-.235-.374A9.818 9.818 0 1 1 12 21.818z"/>
+          </svg>
+          Entrar no Grupo Agora
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <p>© 2026 <span>LegendMax</span> — Comunidade de Fã-Dublagem. Feito com paixão.</p>
+  </footer>
+
+</body>
+</html>ound-image:
         linear-gradient(rgba(204,17,17,0.07) 1px, transparent 1px),
         linear-gradient(90deg, rgba(204,17,17,0.07) 1px, transparent 1px);
       background-size: 60px 60px;
