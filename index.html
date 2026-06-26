@@ -43,7 +43,6 @@
       overflow: hidden;
     }
 
-    /* Grade vermelha ao fundo — elemento de assinatura */
     .hero::before {
       content: '';
       position: absolute;
@@ -118,7 +117,6 @@
       font-size: 15px;
       border-radius: 6px;
       transition: background .2s, transform .15s, box-shadow .2s;
-      box-shadow: 0 0 0 0 rgba(204,17,17,0);
     }
     .btn-primary:hover {
       background: var(--red-glow);
@@ -141,6 +139,21 @@
       transition: border-color .2s, color .2s;
     }
     .btn-secondary:hover { border-color: var(--red); color: var(--red); }
+
+    .btn-yt {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      background: #ff0000;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      border-radius: 6px;
+      transition: background .2s, transform .15s;
+    }
+    .btn-yt:hover { background: #cc0000; transform: translateY(-2px); }
 
     /* ── SEÇÕES ── */
     section { padding: 90px 24px; }
@@ -186,9 +199,72 @@
       width: 100%; height: 100%;
     }
 
-    /* ── EQUIPE ── */
-    #equipe { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    /* aviso de copyright */
+    .copyright-notice {
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
 
+    /* ── DOIS VÍDEOS LADO A LADO ── */
+    .video-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 40px;
+    }
+    @media (max-width: 680px) {
+      .video-grid { grid-template-columns: 1fr; }
+    }
+    .video-card-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    /* ── BASTIDORES (em breve) ── */
+    #bastidores { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    .coming-soon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .coming-soon-card {
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      padding: 36px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .coming-soon-card::before {
+      content: 'EM BREVE';
+      position: absolute;
+      top: 12px; right: -24px;
+      background: var(--red);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      padding: 3px 30px;
+      transform: rotate(45deg);
+    }
+
+    .coming-soon-icon { font-size: 32px; margin-bottom: 12px; opacity: 0.5; }
+    .coming-soon-title { font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+    .coming-soon-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+    /* ── EQUIPE ── */
     .team-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
@@ -197,7 +273,7 @@
     }
 
     .member-card {
-      background: var(--bg);
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 28px 20px;
@@ -244,14 +320,21 @@
       border: 1px solid rgba(204,17,17,0.25);
       border-radius: 16px;
       padding: 60px 40px;
-      max-width: 600px;
+      max-width: 640px;
       margin: 0 auto;
     }
 
     .cta-box .section-title { margin-bottom: 14px; }
     .cta-box .section-desc { margin: 0 auto 32px; }
 
-    .wpp-icon {
+    .cta-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .wpp-icon, .yt-icon {
       width: 22px;
       height: 22px;
       fill: #fff;
@@ -266,25 +349,21 @@
       font-size: 13px;
       color: var(--muted);
     }
-
     footer span { color: var(--red); }
 
     /* ── RESPONSIVO ── */
     @media (max-width: 600px) {
-      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
-      .hero-actions { flex-direction: column; align-items: stretch; padding: 0 16px; }
+      .btn-primary, .btn-secondary, .btn-yt { width: 100%; justify-content: center; }
+      .hero-actions, .cta-buttons { flex-direction: column; align-items: stretch; padding: 0 16px; }
       .cta-box { padding: 40px 24px; }
     }
 
-    /* ── ANIMAÇÃO DE ENTRADA ── */
+    /* ── ANIMAÇÃO ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-
-    .hero > * {
-      animation: fadeUp .7s ease both;
-    }
+    .hero > * { animation: fadeUp .7s ease both; }
     .hero-eyebrow { animation-delay: .1s; }
     .hero h1      { animation-delay: .2s; }
     .hero-sub     { animation-delay: .35s; }
@@ -312,26 +391,111 @@
         </svg>
         Entrar no Grupo
       </a>
-      <a href="#projeto" class="btn-secondary">Ver o Projeto ↓</a>
+      <a href="#anime" class="btn-secondary">Ver o Projeto ↓</a>
     </div>
   </section>
 
-  <!-- ── PROJETO ── -->
-  <section id="projeto">
+  <!-- ── ANIME QUE ESTAMOS DUBLANDO ── -->
+  <section id="anime">
     <div class="container">
-      <p class="section-label">Primeiro Projeto</p>
-      <h2 class="section-title">Bloody Mary<br>— A Lenda Voltou</h2>
+      <p class="section-label">Projeto Atual</p>
+      <h2 class="section-title">O Anime que<br>estamos dublando</h2>
       <p class="section-desc">
-        Nossa primeira produção completa. Fã-dublagem, trilha original, edição cinematográfica — tudo feito pela equipe. Assiste e entende o nível que a gente quer chegar.
+        Assiste ao trailer oficial e entende o universo que a LegendMax está trazendo para o português. A dublagem está sendo produzida agora — entra no grupo e acompanha de perto.
       </p>
       <div class="video-wrapper">
         <iframe
-          src="https://www.youtube.com/embed/_u0PrBmYcJM"
-          title="Bloody Mary — A Lenda Voltou | LegendMax"
+          src="https://www.youtube.com/embed/r5FGM0Gowjg"
+          title="Trailer Oficial — Anime LegendMax"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
         </iframe>
+      </div>
+      <p class="copyright-notice">
+        ⚠️ Trailer oficial do anime. Todos os direitos pertencem aos seus respectivos proprietários. Uso apenas para fins de divulgação da fã-dublagem.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── NOSSO TRABALHO (Bloody Mary + Canal) ── -->
+  <section id="projeto" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="container">
+      <p class="section-label">Nosso Trabalho</p>
+      <h2 class="section-title">Do que a gente<br>é capaz</h2>
+      <p class="section-desc">Primeiro projeto completo e o canal onde tudo será publicado. Isso é só o começo.</p>
+
+      <div class="video-grid">
+        <div>
+          <p class="video-card-label">🎬 Primeiro Projeto — Bloody Mary</p>
+          <div class="video-wrapper" style="margin-top: 10px;">
+            <iframe
+              src="https://www.youtube.com/embed/_u0PrBmYcJM"
+              title="Bloody Mary — A Lenda Voltou | LegendMax"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+        <div>
+          <p class="video-card-label">📺 Canal Oficial — LegendMax</p>
+          <div style="margin-top: 10px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg); padding: 40px 24px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 200px; gap: 16px;">
+            <div style="font-size: 48px;">▶️</div>
+            <p style="font-weight: 700; font-size: 16px;">@legends_max221</p>
+            <p style="font-size: 13px; color: var(--muted); line-height: 1.5;">Inscreve no canal para não perder nenhuma dublagem quando sair.</p>
+            <a href="https://youtube.com/@legends_max221" target="_blank" rel="noopener" class="btn-yt" style="margin-top: 8px;">
+              <svg class="yt-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+              Ver o Canal
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BASTIDORES (EM BREVE) ── -->
+  <section id="bastidores">
+    <div class="container">
+      <p class="section-label">Por trás das câmeras</p>
+      <h2 class="section-title">Bastidores<br>da Dublagem</h2>
+      <p class="section-desc">
+        Em breve você vai ver exatamente como a LegendMax trabalha — gravações, erros, acertos e tudo o que rola antes do produto final. Entra no grupo para ver antes de todo mundo.
+      </p>
+
+      <div class="coming-soon-grid">
+        <div class="coming-soon-card">
+          <div class="coming-soon-icon">🎙️</div>
+          <div class="coming-soon-title">Sessão de Gravação</div>
+          <div class="coming-soon-desc">Os dubladores ao vivo gravando as falas do anime.</div>
+        </div>
+        <div class="coming-soon-card">
+          <div class="coming-soon-icon">🎬</div>
+          <div class="coming-soon-title">Edição em Tempo Real</div>
+          <div class="coming-soon-desc">Como o editor sincroniza voz, trilha e imagem.</div>
+        </div>
+        <div class="coming-soon-card">
+          <div class="coming-soon-icon">🎵</div>
+          <div class="coming-soon-title">Produção Musical</div>
+          <div class="coming-soon-desc">A criação da trilha sonora original do projeto.</div>
+        </div>
+        <div class="coming-soon-card">
+          <div class="coming-soon-icon">✍️</div>
+          <div class="coming-soon-title">Adaptação do Roteiro</div>
+          <div class="coming-soon-desc">Do japonês para um português que soa natural.</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 40px; text-align: center;">
+        <a href="https://chat.whatsapp.com/C6BNv9GMHuqG1ei2rRoKni?s=sw&p=a&mlu=3" target="_blank" rel="noopener" class="btn-primary">
+          <svg class="wpp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.86L.057 23.857a.5.5 0 0 0 .608.61l6.102-1.597A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.012-1.375l-.36-.214-3.724.976.993-3.63-.235-.374A9.818 9.818 0 1 1 12 21.818z"/>
+          </svg>
+          Ver os Bastidores em Primeira Mão
+        </a>
       </div>
     </div>
   </section>
@@ -369,31 +533,36 @@
   </section>
 
   <!-- ── EQUIPE ── -->
-  <section id="equipe">
+  <section id="equipe" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
     <div class="container">
       <p class="section-label">Quem faz acontecer</p>
       <h2 class="section-title">A Equipe</h2>
-      <p class="section-desc">Os fundadores e criadores por trás de Bloody Mary — A Lenda Voltou.</p>
+      <p class="section-desc">Os fundadores e criadores por trás da LegendMax.</p>
 
       <div class="team-grid">
         <div class="member-card">
           <div class="member-icon">👑</div>
-          <div class="member-role" style="color: var(--red-glow);">Direção Geral</div>
+          <div class="member-name">Max</div>
+          <div class="member-role" style="color: var(--red-glow);">Direção Geral & Voz</div>
         </div>
         <div class="member-card">
           <div class="member-icon">🎙️</div>
-          <div class="member-role" style="color: #58a6ff;">Fã-Dublador(a)</div>
+          <div class="member-name">Yasmin</div>
+          <div class="member-role" style="color: #58a6ff;">Fã-Dubladora Principal</div>
         </div>
         <div class="member-card">
           <div class="member-icon">🎬</div>
-          <div class="member-role" style="color: #2ea043;">Edição de Vídeo</div>
+          <div class="member-name">Gabriel</div>
+          <div class="member-role" style="color: #2ea043;">Edição de Vídeo & FX</div>
         </div>
         <div class="member-card">
           <div class="member-icon">✍️</div>
-          <div class="member-role" style="color: orange;">Roteirista</div>
+          <div class="member-name">Lívia</div>
+          <div class="member-role" style="color: orange;">Roteirista & Adaptadora</div>
         </div>
         <div class="member-card">
           <div class="member-icon">🎵</div>
+          <div class="member-name">Mestre Cover</div>
           <div class="member-role" style="color: cyan;">Trilha Sonora & Músico</div>
         </div>
       </div>
@@ -407,15 +576,23 @@
         <p class="section-label" style="text-align:center;">Próximo passo</p>
         <h2 class="section-title">Você tem<br>o que a gente precisa?</h2>
         <p class="section-desc">
-          Dublador, músico, editor, roteirista ou animador — se você quer criar algo real, entra no grupo e se apresenta.
+          Dublador, músico, editor, roteirista ou animador — se você quer criar algo real, escolhe como quer acompanhar.
         </p>
-        <a href="https://chat.whatsapp.com/C6BNv9GMHuqG1ei2rRoKni?s=sw&p=a&mlu=3" target="_blank" rel="noopener" class="btn-primary" style="font-size:16px; padding:18px 40px;">
-          <svg class="wpp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.86L.057 23.857a.5.5 0 0 0 .608.61l6.102-1.597A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.012-1.375l-.36-.214-3.724.976.993-3.63-.235-.374A9.818 9.818 0 1 1 12 21.818z"/>
-          </svg>
-          Entrar no Grupo Agora
-        </a>
+        <div class="cta-buttons">
+          <a href="https://chat.whatsapp.com/C6BNv9GMHuqG1ei2rRoKni?s=sw&p=a&mlu=3" target="_blank" rel="noopener" class="btn-primary">
+            <svg class="wpp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+              <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.86L.057 23.857a.5.5 0 0 0 .608.61l6.102-1.597A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.012-1.375l-.36-.214-3.724.976.993-3.63-.235-.374A9.818 9.818 0 1 1 12 21.818z"/>
+            </svg>
+            Entrar no Grupo
+          </a>
+          <a href="https://youtube.com/@legends_max221" target="_blank" rel="noopener" class="btn-yt">
+            <svg class="yt-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            Ver o Canal
+          </a>
+        </div>
       </div>
     </div>
   </section>
